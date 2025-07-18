@@ -10,7 +10,7 @@ export const envSchema = z.object({
     port: z.coerce.number().nonnegative().default(3000),
     nodeEnv: z.nativeEnum(Environment).default(Environment.DEVELOPMENT),
     appType: z.nativeEnum(AppType).default(AppType.HTTP),
-    appName: z.string().default('ms-product'),
+    appName: z.string().default('ms-patients'),
   }),
   swagger: z.object({
     enabled: z.coerce.boolean().default(true),

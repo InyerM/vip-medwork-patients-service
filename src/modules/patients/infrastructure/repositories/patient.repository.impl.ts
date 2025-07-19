@@ -30,7 +30,7 @@ export class PatientRepositoryImpl implements PatientRepository {
   }
 
   public async findAll(): Promise<Patient[]> {
-    const entities = await this.repository.find();
+    const entities = await this.repository.find({ order: { createdAt: 'DESC' } });
     return entities.map((entity) => PatientMapper.toDomain(entity));
   }
 

@@ -43,4 +43,9 @@ export class PatientsController {
   public findAll(): Promise<Patient[]> {
     return this.patientsService.findAll();
   }
+
+  @MessagePattern('patients.unassign_provider')
+  public handleUnassignProvider(@Payload() data: { patientId: string }): Promise<void> {
+    return this.patientsService.unassignProvider(data.patientId);
+  }
 }

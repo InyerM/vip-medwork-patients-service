@@ -9,6 +9,7 @@ import { AssignProviderUseCase } from '../use-cases/assign-provider.use-case';
 import { FindByIdUseCase } from '../use-cases/find-by-id.use-case';
 import { UpdateStatusUseCase } from '../use-cases/update-status.use-case';
 import { FindAllUseCase } from '../use-cases/find-all.use-case';
+import { UnassignProviderUseCase } from '../use-cases/unassign-provider.use-case';
 
 // Domain
 import { Patient } from '../../domain/models/patient.model';
@@ -21,6 +22,7 @@ export class PatientsService {
     private readonly findByIdUseCase: FindByIdUseCase,
     private readonly updateStatusUseCase: UpdateStatusUseCase,
     private readonly findAllUseCase: FindAllUseCase,
+    private readonly unassignProviderUseCase: UnassignProviderUseCase,
   ) {}
 
   public create(dto: CreatePatientDto): Promise<Patient> {
@@ -41,5 +43,9 @@ export class PatientsService {
 
   public findAll(): Promise<Patient[]> {
     return this.findAllUseCase.execute();
+  }
+
+  public unassignProvider(patientId: string): Promise<void> {
+    return this.unassignProviderUseCase.execute(patientId);
   }
 }

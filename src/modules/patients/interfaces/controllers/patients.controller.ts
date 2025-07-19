@@ -25,4 +25,9 @@ export class PatientsController {
   ): Promise<void> {
     return this.patientsService.assignProvider(data.patientId, data.payload);
   }
+
+  @MessagePattern('patients.findById')
+  public findById(@Payload() id: string): Promise<Patient | null> {
+    return this.patientsService.findById(id);
+  }
 }

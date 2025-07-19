@@ -38,4 +38,9 @@ export class PatientsController {
   ): Promise<Patient> {
     return this.patientsService.updateStatus(data.patientId, data.payload.statusId);
   }
+
+  @MessagePattern('patients.findAll')
+  public findAll(): Promise<Patient[]> {
+    return this.patientsService.findAll();
+  }
 }

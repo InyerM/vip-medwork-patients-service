@@ -18,7 +18,7 @@ export class PatientRepositoryImpl implements PatientRepository {
     private readonly repository: Repository<PatientEntity>,
   ) {}
 
-  public async create(patient: Patient): Promise<Patient> {
+  public async create(patient: Partial<Patient>): Promise<Patient> {
     const entity = this.repository.create(PatientMapper.toPersistence(patient));
     const saved = await this.repository.save(entity);
     return PatientMapper.toDomain(saved);
@@ -34,9 +34,9 @@ export class PatientRepositoryImpl implements PatientRepository {
     return entities.map((entity) => PatientMapper.toDomain(entity));
   }
 
-  public async update(patient: Patient): Promise<Patient> {
-    await this.repository.save(PatientMapper.toPersistence(patient));
-    return patient;
+  public async update(patient: Partial<Patient>): Promise<Patient> {
+    const entity = await this.repository.save(PatientMapper.toPersistence(patient));
+    return PatientMapper.toDomain(entity);
   }
 
   public async delete(id: string): Promise<void> {

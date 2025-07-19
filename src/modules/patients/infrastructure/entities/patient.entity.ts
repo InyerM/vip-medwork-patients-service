@@ -52,4 +52,8 @@ export class PatientEntity {
     description: 'Patient creation date',
   })
   public createdAt: Date;
+
+  public constructor(params: Partial<PatientEntity>) {
+    Object.assign(this, params);
+  }
 }

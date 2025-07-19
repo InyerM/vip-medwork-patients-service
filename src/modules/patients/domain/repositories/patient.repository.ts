@@ -5,7 +5,7 @@ export interface PatientRepository {
    * Creates a new patient and persists it.
    * @param patient Domain model to create.
    */
-  create(patient: Patient): Promise<Patient>;
+  create(patient: Partial<Patient>): Promise<Patient>;
 
   /**
    * Finds a patient by their ID.
@@ -22,7 +22,7 @@ export interface PatientRepository {
    * Updates an existing patient.
    * @param patient The modified patient model.
    */
-  update(patient: Patient): Promise<Patient>;
+  update(patient: Partial<Patient>): Promise<Patient>;
 
   /**
    * Deletes a patient by ID.

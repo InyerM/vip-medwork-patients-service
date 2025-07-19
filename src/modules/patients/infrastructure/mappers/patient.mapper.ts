@@ -17,13 +17,7 @@ export class PatientMapper {
     };
   }
 
-  public static toPersistence(domain: Omit<Patient, 'id' | 'createdAt'>): PatientEntity {
-    const entity = new PatientEntity();
-    entity.fullName = domain.fullName;
-    entity.email = domain.email;
-    entity.phone = domain.phone;
-    entity.providerId = domain.providerId ?? null;
-    entity.statusId = domain.statusId ?? null;
-    return entity;
+  public static toPersistence(domain: Partial<Patient>): PatientEntity {
+    return new PatientEntity(domain);
   }
 }

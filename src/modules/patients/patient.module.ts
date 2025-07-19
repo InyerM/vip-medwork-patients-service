@@ -9,6 +9,7 @@ import { PatientRepositoryImpl } from './infrastructure/repositories/patient.rep
 // Application
 import { CreatePatientUseCase } from './application/use-cases/create-patient.use-case';
 import { AssignProviderUseCase } from './application/use-cases/assign-provider.use-case';
+import { FindByIdUseCase } from './application/use-cases/find-by-id.use-case';
 import { PatientsService } from './application/services/patients.service';
 
 // Interfaces
@@ -24,6 +25,7 @@ import { PATIENT_INJECTION_TOKEN } from './domain/constants/patient-injection-to
     PatientRepositoryImpl,
     CreatePatientUseCase,
     AssignProviderUseCase,
+    FindByIdUseCase,
     PatientsService,
     {
       provide: PATIENT_INJECTION_TOKEN,

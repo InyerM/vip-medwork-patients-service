@@ -6,6 +6,7 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PatientsService } from '@/modules/patients/application/services/patients.service';
 import { CreatePatientDto } from '@/modules/patients/application/dto/create-patient.dto';
 import { AssignProviderDto } from '@/modules/patients/application/dto/assign-provider.dto';
+import { UpdateStatusDto } from '@/modules/patients/application/dto/update-status.dto';
 
 // Domain
 import { Patient } from '@/modules/patients/domain/models/patient.model';
@@ -29,5 +30,12 @@ export class PatientsController {
   @MessagePattern('patients.findById')
   public findById(@Payload() id: string): Promise<Patient | null> {
     return this.patientsService.findById(id);
+  }
+
+  @MessagePattern('patients.update_status')
+  public updateStatus(
+    @Payload() data: { patientId: string; payload: UpdateStatusDto },
+  ): Promise<Patient> {
+    return this.patientsService.updateStatus(data.patientId, data.payload.statusId);
   }
 }
